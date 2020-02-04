@@ -2,7 +2,7 @@ const form = document.getElementById('form');
 const username = document.getElementById('username');
 const email = document.getElementById('email');
 const password = document.getElementById('password');
-const confirmation  = document.getElementById('confirmation');
+const confirmation = document.getElementById('confirmation');
 
 // Show input error message
 function showError(input, message) {
@@ -50,6 +50,13 @@ function checkLength(input, min, max) {
   }
 };
 
+// Check if Passwords Match
+function checkPasswordsMatch(input1, input2) {
+  if(input1.value !== input2.value) {
+    showError(input2, 'Passwords do not match');
+  }
+};
+
 // Get Field Name
 function getFieldName(input) {
   return input.id.charAt(0).toUpperCase() + input.id.slice(1);
@@ -63,4 +70,5 @@ form.addEventListener('submit', function(e) {
   checkLength(username, 3, 15);
   checkLength(password, 6, 25);
   checkEmail(email);
+  checkPasswordsMatch(password, confirmation);
 });
